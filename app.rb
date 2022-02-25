@@ -4,7 +4,17 @@ require 'sinatra/reloader' if development?
 require './models'
 require 'dotenv/load'
 
+require 'open-uri'
+require 'net/http'
+require 'json'
+
 enable :sessions
+
+helpers do
+    def current_user
+        User.find_by(id: session[:user])
+    end
+end
 
 before do
     Dotenv.load
@@ -16,6 +26,7 @@ before do
 end
 
 get '/' do
+    @contents = User.all.order('id desc')
     erb :index
 end
 
@@ -28,6 +39,14 @@ get '/home' do
 end
 
 get '/search' do
+    keyword = params[:keyword]
+    uri = URI("https://itunes.apple.com/search")
+    uri.query = URI.encode_www_form({ term: keyword, country: "JP", media: "music", limit: 10 })
+    res = Net::HTTP.get_response(uri)
+    returned_JSON = JSON.parse(res.body)
+    @musics = returned_JSON["results"]
+    
+    
     erb :search
 end
 
