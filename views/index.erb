@@ -13,13 +13,14 @@
 	<h1>最新の投稿</h1>
 
 	<div class="post center-vertical">
-		<img src="" width="125" height="125">
-		<p>アーティスト: 〇〇</p>
-		<p>アルバム: 〇〇</p>
-		<p>曲名: 〇〇</p>
-		<p><a href="#">サンプル</a></p>
-		<p>コメント: 〇〇</p>
-		<p>投稿者: 〇〇</p>
+		<% @usermusics.each do |usermusic| %>
+		<img src="<%= usermusic.img %>" width="125" height="125">
+		<p>アーティスト: <%= usermusic.artist %></p>
+		<p>アルバム: <%= usermusic.album %></p>
+		<p>曲名: <%= usermusic.name %></p>
+		<p><a href="<%= usermusic.sample %>">サンプル</a></p>
+		<p>コメント: <%= usermusic.comment %></p>
+		<p>投稿者: <%= usermusic.user_name %></p>
 		<a href="#">フォローする</a>
 		<a href="#">フォロー解除</a>
 		<p>いいねしたユーザー</p>
@@ -27,6 +28,7 @@
 			<img src="" alt="user_image" width="40" height="40">
 		</div>
 		<a href="#">いいねする</a>
+		<% end %>
 	</div>
 
 	<%# TODO: ここで分岐 %>

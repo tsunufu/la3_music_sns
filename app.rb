@@ -27,6 +27,11 @@ end
 
 get '/' do
     @contents = User.all.order('id desc')
+    if current_user.nil?
+        @usermusics = Music.none
+    else
+        @usermusics = current_user.musics
+    end
     erb :index
 end
 
@@ -81,3 +86,10 @@ get '/signout' do
     session[:user] = nil
     redirect '/'
 end
+
+post '/post' do
+    current_user.musics.create(img: params[:img], artist: params[:artist], 
+    album: params[:album], name: params[:name], sample: params[:sample], comment: params[:comment], user_name: current_user.name)
+    redirect '/'
+end
+    

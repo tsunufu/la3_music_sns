@@ -18,8 +18,13 @@
 						<p>アルバム: <%= music["collectionName"] %></p>
 						<p>曲名: <%= music["trackName"] %></p>
 						<p><a href="<%= music["previewUrl"] %>">サンプル</a></p>
-						<form>
-							<input type="" name="" placeholder="コメント">
+						<form action="/post" method="post">
+							<input type="hidden" value="<%= music["artworkUrl100"] %>" name="img">
+							<input type="hidden" value="<%= music["artistName"] %>" name="artist">
+							<input type="hidden" value="<%= music["collectionName"] %>" name="album">
+							<input type="hidden" value="<%= music["trackName"] %>" name="name">
+							<input type="hidden" value="<%= music["previewUrl"] %>" name="sample">
+							<input type="text" name="comment" placeholder="コメント">
 							<input type="submit" value="投稿">
 						</form>
 						<% end %>
