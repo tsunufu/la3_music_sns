@@ -37,7 +37,7 @@
   }
 
   .login_button {
-    background-color: white;
+    background-color: rgba(r,g,b,a);
     margin-top: 10px;
     padding: 10px;
     border-radius: 8px;
@@ -72,3 +72,6 @@
     gap: 8px;
   }
   
+  .container{
+    text-align:center;
+  }

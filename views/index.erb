@@ -2,11 +2,13 @@
 	<h1>MUSIC SNS!!!</h1>
 	<% if current_user.nil? %>
 	<div class="login_button">
+		<div class="container">
 		<form action="/signin" method="post">
 		    <input type="text" name="name" placeholder="ユーザー名"><br>
 		    <input type="password" name="password" placeholder="パスワード"><br>
 		    <input type="submit" value="Sign in">
 		</form>
+		</div>
 	</div>
 	<% end %>
 </section>
