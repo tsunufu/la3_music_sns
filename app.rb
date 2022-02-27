@@ -38,8 +38,10 @@ end
 get '/home' do
     if current_user.nil?
         @useridmusics = Music.none
+        @favorites = Favorite.none
     else
         @useridmusics = current_user.musics
+        @favorites = current_user.favorite_musics
     end
     erb :home
 end

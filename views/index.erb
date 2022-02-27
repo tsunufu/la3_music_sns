@@ -19,21 +19,29 @@
 	<div class="post center-vertical">
 		<% if !@usermusics.empty? %>
 			<% @usermusics.each do |usermusic| %>
-			<img src="<%= usermusic["img"] %>" width="125" height="125">
-			<p>アーティスト: <%= usermusic["artist"] %></p>
-			<p>アルバム: <%= usermusic["album"] %></p>
-			<p>曲名: <%= usermusic["name"] %></p>
-			<p><a href="<%= usermusic["sample"] %>">サンプル</a></p>
-			<p>コメント: <%= usermusic["comment"] %></p>
-			<p>投稿者: <%= User.find_by(id: usermusic.user_id).name %></p>
-			<a href="#">フォローする</a>
-			<a href="#">フォロー解除</a>
-			<p>いいねしたユーザー</p>
-			<div class="user-box">
-				<img src="" alt="user_image" width="40" height="40">
-			</div>
-			<a href="/post/<%= usermusic.id %>/like">いいねする</a>
-		<% end %>
+				<img src="<%= usermusic["img"] %>" width="125" height="125">
+				<p>アーティスト: <%= usermusic["artist"] %></p>
+				<p>アルバム: <%= usermusic["album"] %></p>
+				<p>曲名: <%= usermusic["name"] %></p>
+				<p><a href="<%= usermusic["sample"] %>">サンプル</a></p>
+				<p>コメント: <%= usermusic["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: usermusic.user_id).name %></p>
+				<a href="#">フォローする</a>
+				<a href="#">フォロー解除</a>
+				<p>いいねしたユーザー</p>
+				<% usermusic.favorite_users.each do |favorite_user| %>
+					<div class="user-box">
+						<img src="<%= favorite_user.icon %>" alt="user_image" width="40", height="40">
+					</div>
+				<% end %>
+					<% if !current_user.nil? %>
+						<% if !usermusic.favorite_users.find_by(id: session[:user]) %>
+							<a href="/post/<%= usermusic.id %>/like">いいねする</a>
+						<% else %>
+							<a href="/post/<%= usermusic.id %>/like_del">削除</a>
+						<% end%>
+					<% end %>
+			<% end %>
 	</div>
 	<% else %>
 	<%# TODO: ここで分岐 %>

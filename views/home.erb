@@ -26,7 +26,27 @@
 
 <section class="center-vertical">
 	<h1><%= current_user.name %>のイイねした投稿</h1>
+	<div class="post center-vertical">
+		<% if !@favorites.empty? %>
+			<% @favorites.each do |favorite| %>
+				<img src="<%= favorite["img"] %>" width="125" height="125">
+				<p>アーティスト: <%= favorite["artist"] %></p>
+				<p>アルバム: <%= favorite["album"] %></p>
+				<p>曲名: <%= favorite["name"] %></p>
+				<p><a href="<%= favorite["sample"] %>">サンプル</a></p>
+				<p>コメント: <%= favorite["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: favorite.user_id).name %></p>
+				<p>いいねしたユーザー</p>
+				<% favorite.favorite_users.each do |favorite_user| %>
+					<div class="user-box">
+						<img src="<%= favorite_user.icon%>" alt="user_image" width="40" height="40">
+					</div>
+				<% end %>
+			<% end %>
+	</div>
+	<% else %>
 	<p>イイねがありません</p>
+	<% end %>
 </section>
 
 <section class="center-vertical">

@@ -66,6 +66,8 @@
   }
   
   .user-box {
+    border-radius: 50%;
+    background-color: aliceblue;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
     has_secure_password
     has_many :musics
     has_many :favorites
-    has_many :favorite_musics, through: :favorites, source: :music
+    has_many :favorite_musics, through: :favorites, source: :music, dependent: :destroy
 end
 
 class Music < ActiveRecord::Base
     belongs_to :user
     has_many :favorites
-    has_many :favorite_users, through: :favorites, source: :user
+    has_many :favorite_users, through: :favorites, source: :user, dependent: :destroy
 end
 
 class Favorite < ActiveRecord::Base
