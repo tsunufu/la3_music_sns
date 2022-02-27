@@ -111,4 +111,16 @@ post '/post/:id/edit' do
     music.save!
     redirect '/'
 end
-    
+
+get '/post/:id/like' do
+    if Favorite.find_by(user_id: session[:user], music_id: params[:id]).nil?
+        Favorite.create(user_id: session[:user], music_id: params[:id])
+    end
+    redirect '/home'
+end
+
+get '/post/:id/like_del' do
+    like = Favorite.find_by(user_id: session[:user], music_id: params[:id])
+    like.delete
+    redirect '/home'
+end
