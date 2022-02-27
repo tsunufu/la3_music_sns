@@ -1,3 +1,7 @@
 <section class="center-vertical">
 	<h1>コメントの更新</h1>
+	<form action="/post/<%= @post.id %>/edit" method="post">
+	<input type="text" name"comment">
+	<input type="submit" value="登録">
+	</form>
 </section>

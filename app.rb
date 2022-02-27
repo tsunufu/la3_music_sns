@@ -27,11 +27,7 @@ end
 
 get '/' do
     @contents = User.all.order('id desc')
-    if current_user.nil?
-        @usermusics = Music.none
-    else
-        @usermusics = current_user.musics
-    end
+    @usermusics = Music.all
     erb :index
 end
 
@@ -40,6 +36,11 @@ get '/signup' do
 end
 
 get '/home' do
+    if current_user.nil?
+        @useridmusics = Music.none
+    else
+        @useridmusics = current_user.musics
+    end
     erb :home
 end
 
@@ -90,6 +91,24 @@ end
 post '/post' do
     current_user.musics.create(img: params[:img], artist: params[:artist], 
     album: params[:album], name: params[:name], sample: params[:sample], comment: params[:comment], user_name: current_user.name)
+    redirect '/'
+end
+
+get '/post/:id/del' do
+    music = Music.find(params[:id])
+    music.destroy
+    redirect '/'
+end
+
+get '/post/:id/edit' do
+    @post = Music.find(params[:id])
+    erb :edit
+end
+
+post '/post/:id/edit' do
+    music = Music.find(params[:id])
+    music.comment = params[:comment]
+    music.save!
     redirect '/'
 end
     

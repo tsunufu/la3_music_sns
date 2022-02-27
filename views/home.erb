@@ -1,18 +1,39 @@
 <section class="center-vertical">
-	<h1>〇〇の投稿</h1>
+	<h1><%= current_user.name %>の投稿</h1>
+	<div class="post center-vertical">
+	<% if !@useridmusics.empty? %>
+			<% @useridmusics.each do |useridmusic| %>
+				<img src="<%= useridmusic.img %>" width="125" height="125">
+				<p>アーティスト: <%= useridmusic.artist %></p>
+				<p>アルバム: <%= useridmusic.album %></p>
+				<p>曲名: <%= useridmusic.name %></p>
+				<p><a href="<%= useridmusic.sample %>">サンプル</a></p>
+				<p>コメント: <%= useridmusic.comment %></p>
+				<p>投稿者: <%= useridmusic.user_name %></p>
+				<p>いいねしたユーザー</p>
+				<div class="user-box">
+					<img src="" alt="user_image" width="40" height="40">
+				</div>
+				<a href="/post/<%= useridmusic.id %>/edit">編集</a>
+				<a href="/post/<%= useridmusic.id %>/del">削除</a>
+			<% end %>
+	</div>
+	<% else %>
+	<%# TODO: ここで分岐 %>
 	<p>投稿がありません</p>
+	<% end %>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のイイねした投稿</h1>
+	<h1><%= current_user.name %>のイイねした投稿</h1>
 	<p>イイねがありません</p>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のフォロー</h1>
+	<h1><%= current_user.name %>のフォロー</h1>
 	<a href="#">フォロー解除</a><br>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のフォロワー</h1>
+	<h1><%= current_user.name %>のフォロワー</h1>
 </section>
