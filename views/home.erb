@@ -3,13 +3,13 @@
 	<div class="post center-vertical">
 	<% if !@useridmusics.empty? %>
 			<% @useridmusics.each do |useridmusic| %>
-				<img src="<%= useridmusic.img %>" width="125" height="125">
-				<p>アーティスト: <%= useridmusic.artist %></p>
-				<p>アルバム: <%= useridmusic.album %></p>
-				<p>曲名: <%= useridmusic.name %></p>
-				<p><a href="<%= useridmusic.sample %>">サンプル</a></p>
-				<p>コメント: <%= useridmusic.comment %></p>
-				<p>投稿者: <%= useridmusic.user_name %></p>
+				<img src="<%= useridmusic["img"] %>" width="125" height="125">
+				<p>アーティスト: <%= useridmusic["artist"] %></p>
+				<p>アルバム: <%= useridmusic["album"] %></p>
+				<p>曲名: <%= useridmusic["name"] %></p>
+				<p><a href="<%= useridmusic["sample"] %>">サンプル</a></p>
+				<p>コメント: <%= useridmusic["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: useridmusic.user_id).name %></p>
 				<p>いいねしたユーザー</p>
 				<div class="user-box">
 					<img src="" alt="user_image" width="40" height="40">

@@ -90,7 +90,7 @@ end
 
 post '/post' do
     current_user.musics.create(img: params[:img], artist: params[:artist], 
-    album: params[:album], name: params[:name], sample: params[:sample], comment: params[:comment], user_name: current_user.name)
+    album: params[:album], name: params[:name], sample: params[:sample], comment: params[:comment], user_id: session[:user])
     redirect '/'
 end
 
