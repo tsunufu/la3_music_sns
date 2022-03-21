@@ -107,10 +107,10 @@ get '/post/:id/edit' do
     erb :edit
 end
 
-post '/post/:id/edit' do
+post '/post/:id' do
     music = Music.find(params[:id])
     music.comment = params[:comment]
-    music.save!
+    music.save
     redirect '/'
 end
 
