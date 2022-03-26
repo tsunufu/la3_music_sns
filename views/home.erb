@@ -1,8 +1,8 @@
 <section class="center-vertical">
 	<h1><%= current_user.name %>の投稿</h1>
-	<div class="post center-vertical">
 	<% if !@useridmusics.empty? %>
 			<% @useridmusics.each do |useridmusic| %>
+			<div class="post center-vertical">
 				<img src="<%= useridmusic["img"] %>" width="125" height="125">
 				<p>アーティスト: <%= useridmusic["artist"] %></p>
 				<p>アルバム: <%= useridmusic["album"] %></p>
@@ -16,8 +16,9 @@
 				</div>
 				<a href="/post/<%= useridmusic.id %>/edit">編集</a>
 				<a href="/post/<%= useridmusic.id %>/del">削除</a>
+				</div>
 			<% end %>
-	</div>
+
 	<% else %>
 	<%# TODO: ここで分岐 %>
 	<p>投稿がありません</p>
@@ -26,9 +27,9 @@
 
 <section class="center-vertical">
 	<h1><%= current_user.name %>のイイねした投稿</h1>
-	<div class="post center-vertical">
 		<% if !@favorites.empty? %>
 			<% @favorites.each do |favorite| %>
+			<div class="post center-vertical">
 				<img src="<%= favorite["img"] %>" width="125" height="125">
 				<p>アーティスト: <%= favorite["artist"] %></p>
 				<p>アルバム: <%= favorite["album"] %></p>
@@ -42,8 +43,9 @@
 						<img src="<%= favorite_user.icon%>" alt="user_image" width="40" height="40">
 					</div>
 				<% end %>
+				</div>
 			<% end %>
-	</div>
+	
 	<% else %>
 	<p>イイねがありません</p>
 	<% end %>

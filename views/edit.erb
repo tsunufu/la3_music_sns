@@ -1,7 +1,7 @@
 <section class="center-vertical">
 	<h1>コメントの更新</h1>
-	<form action="/post/<%= @post.id %>" method="post" placeholder=<%= @post.comment %>>
-	<input type="text" name"comment">
+	<form action="/post/<%= @post.id %>" method="post">
+	<input type="text" name="comment" placeholder=<%= @post.comment %>>
 	<input type="submit" value="登録">
 	</form>
 </section>
